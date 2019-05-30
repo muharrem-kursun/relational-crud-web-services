@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.model.PersonModel;
+import com.model.Person;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -87,7 +87,7 @@ public class PersonDaoImpl implements PersonDao {
 
     }
 
-    public void personSelectDao() {
+    public void getPerson() {
         try {
             PreparedStatement preparedStatement =connection.prepareStatement(PERSON_SELECT);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -105,18 +105,18 @@ public class PersonDaoImpl implements PersonDao {
         }
     }
 
-    public void personDeleteDao(int personId) {
+    public void removePerson(int personId) {
             execute(PERSON_DELETE,personId);
             LOGGER.info("delete islemi basarli");
     }
 
-    public void personUpdateDao(PersonModel personModel) {
-        execute(PERSON_UPDATE,personModel.getPersonName(),personModel.getPersonSurname(),personModel.getPersonId());
+    public void updatePerson(Person person) {
+        execute(PERSON_UPDATE, person.getName(), person.getSurname(), person.getId());
         LOGGER.info("update  islemi basarli");
     }
 
-    public void personInsertDao(PersonModel personModel) {
-        execute(PERSON_INSERT,personModel.getPersonId(),personModel.getPersonName(),personModel.getPersonSurname());
+    public void addPerson(Person person) {
+        execute(PERSON_INSERT, person.getId(), person.getName(), person.getSurname());
         LOGGER.info("insert islemi basarli");
 
     }

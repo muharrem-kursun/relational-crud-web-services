@@ -1,12 +1,12 @@
 package com.service;
 
-import com.model.BookModel;
+import com.model.Book;
 
 public interface BookService {
 
-    public void bookSelectService();
-    public void bookInsertService(BookModel bookModel);
-    public void bookUpdateService(BookModel bookModel);
-    public void bookDeleteService(int bookId);
-    public  void  bookSelectJoinService();
+    public void getBook();
+    public void addBook(Book book);
+    public void updateBook(Book book);
+    public void removeBook(int bookId);
+    public  void getJoinBook();
 }

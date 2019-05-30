@@ -1,11 +1,11 @@
 package com.dao;
 
-import com.model.PersonModel;
+import com.model.Person;
 
 public interface PersonDao {
 
-    public void personSelectDao();
-    public void personDeleteDao(int personId);
-    public void personUpdateDao(PersonModel personModel);
-    public void personInsertDao(PersonModel personModel);
+    public void getPerson();
+    public void removePerson(int personId);
+    public void updatePerson(Person person);
+    public void addPerson(Person person);
 }

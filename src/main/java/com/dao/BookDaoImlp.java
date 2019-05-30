@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.model.BookModel;
+import com.model.Book;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import java.io.IOException;
@@ -10,11 +10,11 @@ import java.util.Properties;
 
 
 public class BookDaoImlp implements BookDao {
-    private final String BOOK_SELECT = "SELECT * FROM book";
-    private final String BOOK_INSERT =  "INSERT INTO book(personId,bookId,bookName,bookAuthor) VALUES(?,?,?,?)";
-    private final String BOOK_UPDATE = "UPDATE book SET  personId = ?,bookName = ?,bookAuthor = ? WHERE bookId = ?";
-    private final String BOOK_DELETE = "DELETE FROM book WHERE bookId = ?";
-    private final String BOOK_JOIN = "SELECT book.bookId,person.personName FROM book INNER JOIN person ON (book.personId = person.personId) ";
+    private final String GET_BOOK = "SELECT * FROM book";
+    private final String ADD_BOOK =  "INSERT INTO book(personId,bookId,bookName,bookAuthor) VALUES(?,?,?,?)";
+    private final String UPDATE_BOOK = "UPDATE book SET  personId = ?,bookName = ?,bookAuthor = ? WHERE bookId = ?";
+    private final String REMOVE_BOOK = "DELETE FROM book WHERE bookId = ?";
+    private final String GET_JOIN_BOOK = "SELECT book.bookId,person.personName FROM book INNER JOIN person ON (book.personId = person.personId) ";
    private Connection connection= null;
     private final Logger LOGGER = Logger.getLogger(BookDaoImlp.class);
     public BookDaoImlp() {
@@ -86,9 +86,9 @@ public class BookDaoImlp implements BookDao {
         }
 
     }
-    public void bookSelectJoinDao() {
+    public void getJoinBook() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(BOOK_JOIN);
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_JOIN_BOOK);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
             {
@@ -105,9 +105,9 @@ public class BookDaoImlp implements BookDao {
 
     }
 
-    public void bookSelectDao() {
+    public void getBooks() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(BOOK_SELECT);
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_BOOK);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
             {
@@ -124,15 +124,15 @@ public class BookDaoImlp implements BookDao {
 
     }
 
-    public void bookDeleteDao(int bookId) {
-        execute(BOOK_DELETE,bookId);
+    public void removeBooks(int bookId) {
+        execute(REMOVE_BOOK,bookId);
     }
 
-    public void bookUpdateDao(BookModel bookModel) {
-        execute(BOOK_UPDATE,bookModel.getPersonId(),bookModel.getBookName(),bookModel.getBookAuthor(),bookModel.getBookId());
+    public void updateBook(Book book) {
+        execute(UPDATE_BOOK, book.getPersonId(), book.getName(), book.getAuthor(), book.getId());
     }
 
-    public void bookInsertDao(BookModel bookModel) {
-        execute(BOOK_INSERT,bookModel.getPersonId(),bookModel.getBookId(),bookModel.getBookName(),bookModel.getBookAuthor());
+    public void addBook(Book book) {
+        execute(ADD_BOOK, book.getPersonId(), book.getId(), book.getName(), book.getAuthor());
     }
 }

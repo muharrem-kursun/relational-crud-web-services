@@ -1,13 +1,12 @@
 package com.service;
 
 
-import com.model.BookModel;
-import com.model.PersonModel;
+import com.model.Person;
 
 public interface PersonService {
 
-    public void personSelectService();
-    public void personDeleteService(int personId);
-    public void personUpdateService(PersonModel personModel);
-    public void personInsertService(PersonModel bookModel);
+    public void getPerson();
+    public void removePerson(int personId);
+    public void updatePerson(Person person);
+    public void insertPerson(Person bookModel);
 }

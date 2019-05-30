@@ -1,28 +1,34 @@
 package com.service;
 
 import com.dao.BookDaoImlp;
-import com.model.BookModel;
+import com.model.Book;
 
 public class BookServiceImpl implements BookService{
-    BookDaoImlp bookDaoImlp = new BookDaoImlp();
-    public void bookSelectService() {
-            bookDaoImlp.bookSelectDao();
+    BookDaoImlp bookDaoImlp;
+    public BookServiceImpl() {
+         bookDaoImlp = new BookDaoImlp();
     }
 
-    public void bookInsertService(BookModel bookModel) {
 
-        bookDaoImlp.bookInsertDao(bookModel);
+
+    public void getBook() {
+            bookDaoImlp.getBooks();
     }
 
-    public void bookUpdateService(BookModel bookModel) {
-        bookDaoImlp.bookUpdateDao(bookModel);
+    public void addBook(Book book) {
+
+        bookDaoImlp.addBook(book);
     }
 
-    public void bookDeleteService(int bookId) {
-        bookDaoImlp.bookDeleteDao(bookId);
+    public void updateBook(Book book) {
+        bookDaoImlp.updateBook(book);
     }
 
-    public void bookSelectJoinService() {
-        bookDaoImlp.bookSelectJoinDao();
+    public void removeBook(int bookId) {
+        bookDaoImlp.removeBooks(bookId);
+    }
+
+    public void getJoinBook() {
+        bookDaoImlp.getJoinBook();
     }
 }

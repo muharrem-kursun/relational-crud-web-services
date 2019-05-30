@@ -1,25 +1,29 @@
 package com.service;
 
 import com.dao.PersonDaoImpl;
-import com.model.BookModel;
-import com.model.PersonModel;
+import com.model.Person;
 
 public class PersonServiceImpl implements PersonService {
-    PersonDaoImpl personDaoImpl= new PersonDaoImpl();
-    public void personSelectService() {
-        personDaoImpl.personSelectDao();
+    PersonDaoImpl personDaoImpl;
+    public PersonServiceImpl() {
+        personDaoImpl= new PersonDaoImpl();
     }
 
-    public void personDeleteService(int personId) {
-        personDaoImpl.personDeleteDao(personId);
+
+    public void getPerson() {
+        personDaoImpl.getPerson();
     }
 
-    public void personUpdateService(PersonModel personModel) {
-        personDaoImpl.personUpdateDao(personModel);
+    public void removePerson(int personId) {
+        personDaoImpl.removePerson(personId);
     }
 
-    public void personInsertService(PersonModel personModel) {
-        personDaoImpl.personInsertDao(personModel);
+    public void updatePerson(Person person) {
+        personDaoImpl.updatePerson(person);
+    }
+
+    public void insertPerson(Person person) {
+        personDaoImpl.addPerson(person);
     }
 }
 
