@@ -14,15 +14,17 @@ public class PersonServiceImpl implements PersonService {
         personDaoImpl.getPerson();
     }
 
-    public void removePerson(int personId) {
+
+
+    public void removePerson(int personId) throws Exception {
         personDaoImpl.removePerson(personId);
     }
 
-    public void updatePerson(Person person) {
-        personDaoImpl.updatePerson(person);
+    public void updatePerson(Person person) throws Exception  {
+         personDaoImpl.updatePerson(person);
     }
 
-    public void insertPerson(Person person) {
+    public void insertPerson(Person person)throws Exception {
         personDaoImpl.addPerson(person);
     }
 }
